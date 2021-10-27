@@ -25,9 +25,6 @@ y = np.concatenate((minus_ones, ones))
 N = x.shape[0]
 d = x.shape[1]
 
-w = np.zeros(d)
-
-
 def gradient(w):
     exponential = np.exp((x @ w) * y)
     scalar = -y / (1 + exponential)
@@ -39,36 +36,73 @@ def f(w):
     return np.sum(np.log(1 + exponential)) / N
 
 
-mu = 1e-6
-should_stop = False
+def gradient_descent_step(w, mu):
+    #Given mu = 1e-6
+    return w - mu * gradient(w)
 
-current_iteration = 0
-max_iterations = 300
 
-print(f"Start value of f: {f(w)}")
+def gradient_step_a(w, mu):
+    #Given mu = 1e-8
+    grad = gradient(w)
+    p = -np.sign(grad) * np.sum(np.abs(grad))
+    return w + mu * p
 
-f_values = []
 
-while not should_stop:
-    next_w = w - mu * gradient(w)
-    current_iteration += 1
+def gradient_step_b(w, mu):
+    #Given mu = 1e-5
+    grad = gradient(w)
 
-    # Store value of f(w) to create convergence rate plot
-    f_values.append(f(w))
+    abs_grad = np.abs(grad)
+    j = np.argmax(abs_grad)
 
-    if current_iteration >= max_iterations:
-        should_stop = True
+    ej = np.zeros(d)
+    ej[j] = 1
 
-    w = next_w
+    p = -np.sign(grad[j]) * abs_grad[j] * ej
+    return w + mu * p
 
-print(f"End value of f: {f(w)}")
 
-# Plot resulting value of f(w) after each iteration
+def run_gradient_descent(step_function, mu, plot_color='b', plot_label=''):
+    w = np.zeros(d)
+    should_stop = False
 
-plt.plot(np.array(f_values))
+    current_iteration = 0
+    max_iterations = 500
+
+    print(f"Start value of f: {f(w)}")
+
+    f_values = []
+
+    while not should_stop:
+        current_iteration += 1
+        next_w = step_function(w, mu)
+
+        # Store value of f(w) to create convergence rate plot
+        f_values.append(f(w))
+
+        if current_iteration >= max_iterations:
+            should_stop = True
+
+        w = next_w
+
+    print(f"End value of f: {f(w)}")
+
+    # Plot resulting value of f(w) after each iteration
+
+    plt.plot(np.array(f_values), color=plot_color, label=plot_label)
+    plt.savefig('img/gradient_step_b_1e-5.png')
+
+
+run_gradient_descent(gradient_descent_step, 1e-6, 'r', 'Standard GD ($\mu = 1e-6$)')
+run_gradient_descent(gradient_step_a, 1e-8, 'b', '(a) ($\mu = 1e-8$)')
+run_gradient_descent(gradient_step_b, 1e-4, 'g', '(b) ($\mu = 1e-4$)')
+
 plt.xlabel('Number of iterations')
+plt.legend()
 plt.ylabel('$f(\omega)$')
-plt.savefig('img/f_w_4_9_plot.png')
+plt.show()
+
+exit()
 
 # Try to predict from training set
 

@@ -1,0 +1,63 @@
+- Gradient Descent Step (mu=1e-6):
+
+Start value of f: 0.6931471805599454
+End value of f: 0.10212281289373354
+Error rate training set: 0.021, 21 errors out of 1000
+Error rate testing set: 0.059, 59 errors out of 1000
+
+- Gradient Descent Step (mu=1e-5):
+
+Start value of f: 0.6931471805599454
+End value of f: 0.037236271844366696
+Error rate training set: 0.006, 6 errors out of 1000
+Error rate testing set: 0.058, 58 errors out of 1000
+
+- Gradient Descent Step (mu=1e-7):
+
+Start value of f: 0.6931471805599454
+End value of f: 0.2831410383462052
+Error rate training set: 0.049, 49 errors out of 1000
+Error rate testing set: 0.085, 85 errors out of 1000
+
+- Gradient Step a (mu=1e-8):
+
+Start value of f: 0.6931471805599454
+End value of f: 0.08374528263626016
+Error rate training set: 0.012, 12 errors out of 1000
+Error rate testing set: 0.051, 51 errors out of 1000
+
+- Gradient Step a (mu=1e-7):
+//SPIKES
+
+Start value of f: 0.6931471805599454
+End value of f: 0.6779455247145509
+Error rate training set: 0.231, 231 errors out of 1000
+Error rate testing set: 0.328, 328 errors out of 1000
+
+- Gradient Step a (mu=1e-9):
+
+Start value of f: 0.6931471805599454
+End value of f: 0.2455798273113047
+Error rate training set: 0.042, 42 errors out of 1000
+Error rate testing set: 0.074, 74 errors out of 1000
+
+- Gradient Step b (mu=1e-4):
+
+Start value of f: 0.6931471805599454
+End value of f: 0.10221875946379995
+Error rate training set: 0.023, 23 errors out of 1000
+Error rate testing set: 0.074, 74 errors out of 1000
+
+- Gradient Step b (mu=1e-3):
+
+Start value of f: 0.6931471805599454
+End value of f: 5.091649950328887
+Error rate training set: 0.468, 468 errors out of 1000
+Error rate testing set: 0.45, 450 errors out of 1000
+
+- Gradient Step b (mu=1e-5):
+
+Start value of f: 0.6931471805599454
+End value of f: 0.2253440378466609
+Error rate training set: 0.076, 76 errors out of 1000
+Error rate testing set: 0.118, 118 errors out of 1000

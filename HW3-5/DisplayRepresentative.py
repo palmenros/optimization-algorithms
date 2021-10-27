@@ -5,6 +5,8 @@ import numpy as np
 # Load dataframe using pandas
 df = pd.read_csv("mnist_train.csv", header=None)
 
+fig, axes = plt.subplots(2, 5, squeeze=True)
+
 for i in range(0, 10):
     # Filter the dataframe for the specific digit we are searching
     dataframe_digit_i = df[df.iloc[:, 0] == i]
@@ -17,5 +19,9 @@ for i in range(0, 10):
 
     print(f'Plotting as representative of digit #{i} image with index {representative_index}')
 
-    plt.imshow(image_data, interpolation='nearest')
-    plt.show()
+    axis = axes[i // 5, i % 5]
+    axis.imshow(image_data, interpolation='nearest')
+    axis.axis('off')
+    axis.title.set_text(f'#{representative_index}')
+
+plt.savefig('img/representatives.png')
